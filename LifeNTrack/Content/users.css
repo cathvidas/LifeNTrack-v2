@@ -1,0 +1,395 @@
+body {
+  background: #e8f5ff !important;
+}
+
+/* modified css  */
+
+.accordion-flush .accordion-button {
+  padding: 20px;
+}
+
+.accordion-flush .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  color: unset;
+  font-weight: bold;
+}
+
+.accordion-flush .accordion-body {
+  padding: 0 40px 20px 40px;
+}
+
+@media (min-width: 1200px) {
+
+  #main,
+  #footer {
+    margin-left: 200px;
+  }
+}
+
+#main {
+  min-height: calc(100vh - 120px);
+}
+
+.sidebar {
+  top: 60px;
+}
+
+.sidebar .nav-link.collapsed {
+  /* display: hide; */
+  color: #cae6f7;
+  background: transparent;
+}
+
+.sidebar .nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* font-size: 15px;  */
+  color: #ffffff;
+  background-color: #fcfcfc62;
+}
+
+.sidebar .nav-link i {
+  font-size: 25px;
+  color: #ffffff;
+  margin: unset;
+}
+
+.sidebar .nav-link.collapsed {
+  display: hide;
+  color: #cae6f7;
+  background: transparent;
+}
+
+.sidebar .nav-link.collapsed span {
+  /* visibility: hidden; */
+  color: #cae6f7;
+}
+
+.sidebar .nav-link.collapsed i {
+  color: #cae6f7;
+}
+
+.sidebar .nav-link:hover {
+  color: #ffffff;
+  background-color: #fcfcfc62;
+}
+
+.sidebar .nav-link:hover i {
+  color: #ffffff;
+}
+
+.sidebar .nav-link:hover span {
+  color: #fff;
+}
+
+.message-item img {
+  width: unset;
+  overflow: clip;
+}
+
+.header {
+  background: linear-gradient(105deg, rgba(91, 104, 235, 1) 0%, rgba(40, 225, 253, 1) 100%);
+}
+
+.header-nav .notifications .notification-item.unseen {
+  background-color: #f6f9ff;
+}
+
+.logo span,
+.header .toggle-sidebar-btn {
+  color: #fff;
+}
+
+/* ADDITIONAL CSS */
+
+aside.user-nav {
+  width: 200px;
+  background: linear-gradient(136deg, rgba(91, 104, 235, 1) 0%, rgba(40, 225, 253, 1) 100%);
+
+
+}
+
+aside.user-nav .nav {
+  box-shadow: unset;
+  border-radius: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+aside.user-nav .logout i {
+  color: white;
+  font-size: 25px;
+}
+
+.sidebar .top {
+  justify-content: space-between;
+}
+
+.sidebar .filter {
+  position: absolute;
+  right: 0;
+  top: 35% !important;
+  transform: translateX(50%)
+}
+
+
+.img-bx {
+  width: 75%;
+  margin: 0 auto;
+  /* padding: 10%; */
+}
+
+.img-bx img {
+  width: 100%;
+}
+
+.welcome-message {
+  position: relative;
+  /* height: 200px; */
+  background: url('../../public/assets/images/client-bg.png');
+  background-repeat: no-repeat;
+  background-position: 100%;
+  background-size: cover;
+  border-radius: 20px !important;
+  flex-direction: row !important;
+  align-items: center;
+  padding: 20px 40px;
+  gap: 20px;
+  border: none !important;
+}
+
+.welcome-message .upper {}
+
+.welcome-message .message {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.welcome-message .message p {
+  color: #fff;
+
+}
+
+.welcome-message .img {
+  position: relative;
+}
+
+.welcome-message img {
+  /* position: absolute; */
+  /* bottom: -50px; */
+  /* top: -50px; */
+  right: 0;
+  bottom: -79px;
+  width: 90%;
+}
+
+#main {
+  position: relative;
+  /* height: fit-content; */
+  overflow: hidden;
+}
+
+.page-header {
+  /* position: fixed !important; */
+  z-index: 99;
+  /* width: 100%; */
+  /* background-color: #15629c; */
+  justify-content: space-between;
+}
+
+.dashboard .info-card {
+  padding: unset;
+}
+
+.dashboard .right {
+  position: sticky;
+  top: 0;
+  height: fit-content;
+}
+
+.activity-btn {
+  width: fit-content;
+}
+
+#myActivity li {
+  cursor: pointer;
+}
+
+#display-activity-modal p {
+  color: unset !important;
+}
+
+#event-list-group .service-item p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#event-list-group .service-item {
+  margin-bottom: 30px !important;
+  /* color: #70012f; */
+}
+
+#event-list-group .service-item:hover .user-name,
+#event-list-group .service-item:hover small {
+  color: white;
+  transition: all .3s;
+}
+
+#event-list-group .service-item .user-name {
+  font-weight: bold;
+  color: #012970;
+}
+
+#event-list-group .service-item button {
+  background-color: rgb(19, 175, 240);
+  color: white;
+}
+
+#event-list-group .service-item button:hover {
+  background-color: white;
+  color: unset;
+}
+
+.eventsList .desc {
+  color: black;
+}
+
+.eventsList .add-details {
+  margin-top: 10px;
+  gap: 50px;
+}
+
+.eventsList .add-details p {
+  line-height: 1.5em;
+  color: #012970;
+}
+
+.eventsList.user-page .add-details p {
+  /* font-weight: bold; */
+  color: #000;
+}
+
+.eventsList .accordion-button i {
+  margin-right: 10px !important;
+}
+
+
+.friend-list .icon-bx i {
+  font-size: 60px;
+}
+
+.other-user-profile .profile-card i.profile {
+  font-size: 150px;
+}
+
+.other-user-profile i.bxl-messenger {
+  font-size: 30px;
+}
+
+.friend-list a {
+  color: black;
+}
+
+.activitiesList {
+  position: relative;
+}
+
+.activitiesList .filter {
+  position: absolute;
+  z-index: 5;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.activitiesList .filter .dropdown-menu {
+  z-index: 999;
+}
+
+.invite-action-btn {
+  text-align: right;
+}
+
+.invite-action-btn button {
+  padding: 5px 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+#allActivities .event-upcoming {
+  background-color: #cfe2ff;
+}
+
+#allActivities .event-done {
+  background-color: #d1e7dd;
+}
+
+#allActivities .event-cancel {
+  background-color: #f8d7da;
+}
+
+i.profile {
+  font-size: 100px;
+}
+
+.logo.white {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.event-cards {
+  cursor: pointer;
+}
+
+.event-cards .username {
+  font-weight: bold;
+  color: #012970;
+  transition: all .3s;
+}
+
+.event-cards:hover .username {
+  color: #fff;
+}
+
+/* .card.transparent {
+  background-color: transparent;
+} */
+
+
+/* ANNOUNCEMENTS */
+.anouncement-list-item:hover {
+  background: linear-gradient(136deg, rgba(91, 104, 235, 1) 0%, rgba(40, 225, 253, 1) 100%);
+  color: #fff;
+  transition: all .3s;
+}
+
+.setting .profile-card {
+  background: linear-gradient(136deg, rgba(91, 103, 235, 0.733) 0%, rgba(40, 225, 253, 0.74) 100%);
+  gap: 20px;
+  color: #012970;
+}
+
+.setting .profile-card i.profile {
+  font-size: 150px;
+}
+
+.setting .profile-card h2 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.setting .profile-card a {
+  /* color: #cfe2ff; */
+  color: #2e4572;
+  font-size: 25px;
+}

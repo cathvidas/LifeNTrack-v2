@@ -1,0 +1,44 @@
+.header {
+    background: linear-gradient(105deg, rgba(91, 104, 235, 1) 0%, rgba(40, 225, 253, 1) 100%);
+}
+
+.logo span,
+.header .toggle-sidebar-btn {
+    color: #fff;
+}
+
+.sidebar {
+    background: linear-gradient(136deg, rgba(91, 104, 235, 1) 0%, rgba(40, 225, 253, 1) 100%);
+}
+
+.sidebar h2 {
+    color: #f6f9ff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sidebar-nav .nav-link.collapsed {
+    background-color: transparent;
+    color: #fff;
+}
+
+.sidebar-nav .nav-link.collapsed i {
+    color: #fff;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #4154f1;
+    background: #f6f9ff;
+}
+
+.sidebar-nav .nav-link:hover i {
+    color: #4154f1;
+}
+
+#main {
+    min-height: calc(100vh - 120px);
+}
+
+.dashboard .info-card {
+    padding: unset;
+}

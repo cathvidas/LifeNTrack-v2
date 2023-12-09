@@ -1,0 +1,322 @@
+﻿@{
+    Layout = null; // Set layout to null
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/public")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo blue">
+                            <!-- <img src="assets/images/logo.png" alt="Chain App Dev"> -->
+                            LifeNTrack
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="#services">Services</a></li>
+                            <li class="scroll-to-section"><a href="#about">About</a></li>
+                            <!-- <li class="scroll-to-section"><a href="#newsletter">Newsletter</a></li> -->
+                            <li>
+                                <div class="gradient-button">
+                                    <a id="modal_trigger" href="#modal">
+                                        LogIn
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="modal" class="popupContainer" style="display:none;">
+        <div class="form-structor">
+            <form class="signup" action="../../server/auth/signup.php" method="POST">
+                <!-- <p class="logo">LifeNTrack</p> -->
+                <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+                <div class="form-holder">
+                    <input type="text" class="input" name="fullname" placeholder="Fullname" required />
+                    <select class="input" id="gender" name="gender">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="">Other</option>
+                    </select>
+                    <input type="email" class="input" name="email" placeholder="Email" required />
+                    <input type="password" class="input" name="password" placeholder="Password" required />
+                </div>
+                <button class="submit-btn">Sign up</button>
+            </form>
+            <form class="login slide-up" action="../../server/auth/login.php" method="POST">
+                <div class="center">
+                    <h2 class="form-title" id="login"><span>or</span>Log in</h2>
+                    <div class="form-holder">
+                        <input type="email" class="input" name="email" placeholder="Email" required />
+                        <input type="password" class="input" name="password" placeholder="Password" required />
+                    </div>
+                    <button class="submit-btn">Log in</button>
+                    <!-- <p class="logo">LifeNTrack</p> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6 align-self-center">
+                            <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h2><span class="logo">LifeNTrack:</span> Streamline Your Life's Journey</h2>
+                                        <p>Empower Yourself with the Ultimate Life Management Platform. Simplify. Organize. Thrive.</p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="white-button first-button scroll-to-section">
+                                            <a id="modal_trigger" href="/User/Index">Manage Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                                <img src="/Images/slider-dec.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="services" class="services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <h4>Amazing <em>Services &amp; Features</em> for you</h4>
+                        <img src="/Images/heading-line-dec.png" alt="">
+                        <p>Lifentrack is your all-in-one solution for effective task management, collaboration, networking, and goal tracking. With these four core features, we've got you covered:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="service-item first-service">
+                        <div class="icon"></div>
+                        <h4>Task Organizer</h4>
+                        <p>Manage tasks with ease. Set deadlines and add notes for efficient organization.</p>
+                        <!-- <div class="text-button">
+                          <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="service-item second-service">
+                        <div class="icon"></div>
+                        <h4>Social Task Network</h4>
+                        <p>Connect and stay accountable. Share tasks and find inspiration in a supportive community.</p>
+                        <!-- <div class="text-button">
+                          <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="service-item third-service">
+                        <div class="icon"></div>
+                        <h4>Team Collaboration</h4>
+                        <p>Work together effortlessly. Invite others to tasks and stay updated in real-time.</p>
+                        <!-- <div class="text-button">
+                          <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="service-item fourth-service">
+                        <div class="icon"></div>
+                        <h4>Lifentrack Alerts</h4>
+                        <p>Stay informed. Receive alerts for deadlines, task assignments, and important updates easily.</p>
+                        <!-- <div class="text-button">
+                          <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="about" class="about-us section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 align-self-center">
+                    <div class="section-heading">
+                        <h4>About <em>What We Do</em> &amp; Who We Are</h4>
+                        <img src="/Images/heading-line-dec.png" alt="">
+                        <p>At Lifentrack, we are more than just a platform; we are a community dedicated to personal growth, collaboration, and mutual support. Our mission is to foster a sense of community and provide tools that empower you to connect with others who share your ambitions and simplify your life.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="box-item">
+                                <h4><a href="#">Simplify &amp; Thrive</a></h4>
+                                <p>Our platform simplifies tasks, sparks inspiration, and keeps you organized.  </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="box-item">
+                                <h4><a href="#">Connect &amp; Collaborate: </a></h4>
+                                <p>Lifentrack is your hub for connecting and collaborating.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="box-item">
+                                <h4><a href="#">Teamwork &amp; Growth</a></h4>
+                                <p>We foster teamwork, personal growth, and productivity.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="box-item">
+                                <h4><a href="#">Goal-Oriented Focus</a></h4>
+                                <p>We're dedicated to helping you turn your aspirations into achievements.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <p>Join us on this journey towards a more organized, productive, and connected future. Start your Lifentrack experience today.</p>
+                            <div class="gradient-button">
+                                <a href="#">Sign Up Now</a>
+                            </div>
+                            <!-- <span>*No Credit Card Required</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-image">
+                        <img src="/Images/about-right-dec.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer id="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="section-heading">
+                        <h4>Join our mailing list to receive the news &amp; latest trends</h4>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-3">
+                    <form id="search" action="#" method="GET">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <fieldset>
+                                    <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on"
+                                           required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <fieldset>
+                                    <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-widget">
+                        <h4>Contact Us</h4>
+                        <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+                        <p><a href="#">010-020-0340</a></p>
+                        <p><a href="#">info@company.co</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-widget">
+                        <h4>About Us</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-widget">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><a href="#">Free Apps</a></li>
+                            <li><a href="#">App Engine</a></li>
+                            <li><a href="#">Programming</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">App News</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">App Dev Team</a></li>
+                            <li><a href="#">Digital Web</a></li>
+                            <li><a href="#">Normal Apps</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-widget">
+                        <h4>About Our Company</h4>
+                        <div class="logo white">
+                            <!-- <img src="assets/images/white-logo.png" alt=""> -->
+                            LifeNTrack
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <p>
+                            Copyright © 2022 Chain App Dev Company. All Rights Reserved.
+                            <br>Design: <a href="https://templatemo.com/" target="_blank" title="css templates">TemplateMo</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/scripts")
+    @Scripts.Render("~/bundles/jspublic")
+</body>
+</html>
+
