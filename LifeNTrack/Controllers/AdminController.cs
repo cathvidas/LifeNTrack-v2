@@ -13,5 +13,13 @@ namespace LifeNTrack.Controllers
         {
             return View();
         }
+        public ActionResult Announcement()
+        {
+            return View();
+        }
+        public ActionResult UsersList()
+        {
+            return View();
+        }
     }
 }

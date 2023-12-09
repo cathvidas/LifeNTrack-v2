@@ -481,7 +481,6 @@ header
 .background-header .main-nav .nav li:last-child a,
 .header-area .main-nav .nav li:nth-child(6) a,
 .background-header .main-nav .nav li:nth-child(6) a {
-  padding: 0px 20px !important;
   font-weight: 400;
 }
 
@@ -503,7 +502,6 @@ header
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   height: 40px;
-  line-height: 40px;
   border: transparent;
   letter-spacing: 1px;
 }

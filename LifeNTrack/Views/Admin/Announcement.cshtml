@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Announcement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Announcements</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active">Users List</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+            <div class="row">
+
+                <!-- Recent Sales -->
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+
+                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="card-body">
+                            <!-- <h5 class="card-title">Announcements <span>| Recent</span></h5> -->
+                            <div class="list-group">
+
+                                <?php
+                                include_once("../../../server/controllers/getTimeGap.php");
+                                $sql = "SELECT * FROM announcement ORDER BY timeCreated DESC";
+                                $result = mysqli_query($conn, $sql);
+                                $count = 1;
+                                if (mysqli_num_rows($result) > 0) :
+                                while ($row = mysqli_fetch_assoc($result)) :
+
+                                $storedDate = $row['timeCreated'];
+                                $timeGap = getTimeGap($storedDate);
+                                ?>
+
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1"><?= $row["subject"] ?></h5>
+                                        <small><?= $timeGap ?></small>
+                                    </div>
+                                    <p class="mb-1"><?= $row["content"] ?></p>
+                                </a>
+
+                                <?php
+                                $count++;
+                                endwhile;
+                                else :
+                                echo "0 results";
+                                endif;
+                                ?>
+                                <!-- <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">List group item heading</h5>
+                                        <small class="text-muted">3 days ago</small>
+                                    </div>
+                                    <p class="mb-1">Some placeholder content in a paragraph.</p>
+                                    <small class="text-muted">And some muted small print.</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">List group item heading</h5>
+                                        <small class="text-muted">3 days ago</small>
+                                    </div>
+                                    <p class="mb-1">Some placeholder content in a paragraph.</p>
+                                    <small class="text-muted">And some muted small print.</small>
+                                </a> -->
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div><!-- End Recent Sales -->
+
+
+            </div>
+        </div><!-- End Left side columns -->
+
+
+    </div>
+</section>

@@ -50,23 +50,24 @@
 
     <div id="modal" class="popupContainer" style="display:none;">
         <div class="form-structor">
-            <form class="signup" action="../../server/auth/signup.php" method="POST">
+            <form class="signup" action="/Home/AddUserToDatabase" method="POST">
                 <!-- <p class="logo">LifeNTrack</p> -->
                 <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
                 <div class="form-holder">
-                    <input type="text" class="input" name="fullname" placeholder="Fullname" required />
-                    <select class="input" id="gender" name="gender">
+                    <input type="text" class="input" name="FirstName" placeholder="FirstName" required />
+                    <input type="text" class="input" name="LastName" placeholder="LastName" required />
+                    <select class="input" id="gender" name="Gender">
                         <option value="">Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="">Other</option>
                     </select>
-                    <input type="email" class="input" name="email" placeholder="Email" required />
-                    <input type="password" class="input" name="password" placeholder="Password" required />
+                    <input type="email" class="input" name="Email" placeholder="Email" required />
+                    <input type="password" class="input" name="Password" placeholder="Password" required />
                 </div>
                 <button class="submit-btn">Sign up</button>
             </form>
-            <form class="login slide-up" action="../../server/auth/login.php" method="POST">
+            <form class="login slide-up" action="/Home/redirectToDashboard" method="POST">
                 <div class="center">
                     <h2 class="form-title" id="login"><span>or</span>Log in</h2>
                     <div class="form-holder">
@@ -112,7 +113,7 @@
     <div id="services" class="services section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2">
+                <div class="offset-lg-2">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <h4>Amazing <em>Services &amp; Features</em> for you</h4>
                         <img src="/Images/heading-line-dec.png" alt="">

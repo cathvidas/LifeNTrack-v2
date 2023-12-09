@@ -54,8 +54,7 @@ namespace LifeNTrack
             bundles.Add(new StyleBundle("~/Content/style").Include(
                       "~/Content/bootstrap.min.css",
                     "~/Content/bootstrap-icons/bootstrap-icons.css",
-                     "~/Content/style.css",
-                     "~/Content/users.css"));
+                     "~/Content/style.css"));
         }
     }
 }
