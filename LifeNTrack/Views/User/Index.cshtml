@@ -20,12 +20,12 @@
         <div class="col-lg-8">
             <div class="welcome-message card col-lg-12">
                 <div class="message">
-                    <h3>Welcome, <b><?= $userData['Fullname'] ?>!</b> </h3>
+                    <h3>Welcome, <b>@ViewData["UserName"]!</b> </h3>
                     <p>We're delighted to have you here. Let's get started on your journey to productivity and success."</p>
-                    <?php include("../../components/activity-btn.php") ?>
+                    <button type="button" class="btn btn-primary rounded-pill activity-btn" data-toggle="modal" data-target="#add-activity-modal">Add Activity</button>
                 </div>
                 <div class="col-lg-6 img">
-                    <img src="../../assets/img/dash.png" alt="">
+                    <img src="/Images/dash.png" alt="">
                 </div>
 
             </div>
@@ -38,18 +38,6 @@
                 <div class="col-xxl-4 col-md-6">
                     <div class="card info-card sales-card">
 
-                        <!-- <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div> -->
 
                         <div class="card-body">
 
@@ -58,16 +46,7 @@
                                     <i class="bi bi-calendar2-week"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <?php
-                                    include_once('../../../server/config/dbUtil.php');
-                                    $conn = getConnection();
-
-                                    $sql = "SELECT * from activity WHERE remarks = 'Upcoming' AND userID= $userID";
-                                    $result = mysqli_query($conn, $sql);
-
-                                    $count = mysqli_num_rows($result);
-                                    ?>
-                                    <h6><?= $count ?></h6>
+                                    <h6>9</h6>
                                     <!-- <span class="text-success small pt-1 fw-bold">12%</span>  -->
                                     <span class="text-muted small pt-2 ps-1">Upcoming</span>
 
@@ -88,16 +67,7 @@
                                     <i class="bi bi-calendar2-check"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <?php
-                                    include_once('../../../server/config/dbUtil.php');
-                                    $conn = getConnection();
-
-                                    $sql = "SELECT * from activity WHERE remarks = 'Done' AND userID= $userID";
-                                    $result = mysqli_query($conn, $sql);
-
-                                    $count = mysqli_num_rows($result);
-                                    ?>
-                                    <h6><?= $count ?></h6>
+                                    <h6>7</h6>
                                     <span class="text-muted small pt-2 ps-1">Completed</span>
 
                                 </div>
@@ -116,16 +86,7 @@
                                     <i class="bi bi-calendar2-x"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <?php
-                                    include_once('../../../server/config/dbUtil.php');
-                                    $conn = getConnection();
-
-                                    $sql = "SELECT * from activity WHERE remarks = 'Cancelled' AND userID= $userID";
-                                    $result = mysqli_query($conn, $sql);
-
-                                    $count = mysqli_num_rows($result);
-                                    ?>
-                                    <h6><?= $count ?></h6>
+                                    <h6>0</h6>
                                     <!-- <span class="text-danger small pt-1 fw-bold">12%</span> -->
                                     <!-- <span class="text-danger small pt-1 fw-bold">Cancelled</span> -->
                                     <span class="text-muted small pt-2 ps-1">Cancelled</span>
@@ -140,36 +101,6 @@
             </div>
             <!-- bar chart -->
             <div class="card">
-                <?php
-                function countActivityPerMonth($specifiedMonth)
-                {
-                global $userID;
-                $conn = getConnection();
-                $sql = "SELECT * FROM activity WHERE userID = $userID";
-                $result = mysqli_query($conn, $sql);
-
-                $activityCount = 0;
-
-                if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                $datetimeString = $row['act_date'];
-                $dateTime = new DateTime($datetimeString);
-                $timestamp = $dateTime->getTimestamp();
-
-                $month = date('n', $timestamp);
-
-                if ($month == $specifiedMonth) {
-                $activityCount++;
-                }
-                }
-
-                return $activityCount;
-                } else {
-                return 0;
-                }
-                }
-
-                ?>
 
                 <div class="card-body">
                     <h5 class="card-title">My Activities</h5>
@@ -184,7 +115,7 @@
                                             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                                             datasets: [{
                                                 label: 'My Activities',
-                                                data: [<?= countActivityPerMonth(1) ?>, <?= countActivityPerMonth(2) ?>, <?= countActivityPerMonth(3) ?>, <?= countActivityPerMonth(4) ?>, <?= countActivityPerMonth(5) ?>, <?= countActivityPerMonth(6) ?>, <?= countActivityPerMonth(7) ?>, <?= countActivityPerMonth(8) ?>, <?= countActivityPerMonth(9) ?>, <?= countActivityPerMonth(10) ?>, <?= countActivityPerMonth(11) ?>, <?= countActivityPerMonth(12) ?>],
+                                                data: [1, 2, 3, 443 , 34, 23, 2, 2, 2, 8, 45,4],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)',
                                                     'rgba(255, 159, 64, 0.2)',
@@ -225,7 +156,33 @@
 
 
         <div class="col-lg-4 right">
-            <?php include_once('../../components/recent-profile.php'); ?>
+            <div class="card">
+
+                <div class="card-body">
+                    <h5 class="card-title">My Activities</h5>
+                    <div class="img-bx">
+                        <img src="/Images/slider-dec.png" alt="">
+                    </div>
+
+                    <div class="activity" style="margin-top: 30px;">
+
+                        <div class="activity-item d-flex">
+                            <div class="activite-label">
+                                6 min
+                            </div>
+                            '<i class="bi bi-circle-fill activity-badge text-primary align-self-start"></i>
+                            <!-- <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i> -->
+                            <div class="activity-content">
+                                tikwejwh
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button type="button" class="btn btn-primary rounded-pill activity-btn" data-toggle="modal" data-target="#add-activity-modal">Add Activity</button>
+            </div>
 
         </div>
 

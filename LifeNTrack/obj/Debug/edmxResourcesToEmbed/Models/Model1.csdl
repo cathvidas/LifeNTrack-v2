@@ -21,6 +21,7 @@
     <Property Name="RoleID" Type="Int32" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Role" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Announcements" Relationship="activityDBModel.FK_Announcement_Announcement" FromRole="User" ToRole="Announcement" />
   </EntityType>
   <Association Name="FK_User_UserRole">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
@@ -41,5 +42,33 @@
       <End Role="Role" EntitySet="Roles" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Announcements" EntityType="activityDBModel.Announcement" />
+    <AssociationSet Name="FK_Announcement_Announcement" Association="activityDBModel.FK_Announcement_Announcement">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Announcement" EntitySet="Announcements" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Announcement">
+    <Key>
+      <PropertyRef Name="AnnouncementID" />
+    </Key>
+    <Property Name="AnnouncementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AnnounceAt" Type="DateTime" Precision="3" />
+    <Property Name="AdminID" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="activityDBModel.FK_Announcement_Announcement" FromRole="Announcement" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Announcement_Announcement">
+    <End Type="activityDBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="activityDBModel.Announcement" Role="Announcement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Announcement">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

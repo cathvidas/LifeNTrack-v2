@@ -23,5 +23,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Announcements">
+      <EntityTypeMapping TypeName="activityDBModel.Announcement">
+        <MappingFragment StoreEntitySet="Announcement">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="AnnounceAt" ColumnName="AnnounceAt" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="AnnouncementID" ColumnName="AnnouncementID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1,7 +1,9 @@
-﻿
+﻿@using LifeNTrack.Models
 @{
     ViewBag.Title = "Announcements";
     Layout = "~/Views/Shared/UserLayout.cshtml";
+    var announceList = ViewData["AnnouncementList"] as IEnumerable<Announcement>;
+    var sortedAnnounceList = announceList.OrderBy(u => u.AnnounceAt);
 }
 
 
@@ -19,46 +21,23 @@
 <section class="section dashboard">
     <div class="row">
         <div class="col-lg-8">
-            <!-- <div class="card col-lg-10">
-                <div class="card-body">
-                    <h5 class="card-title">Announcements</h5>
-
-                    <div class="list-group"> -->
-            <?php
-            include_once("../../../server/config/dbUtil.php");
-            $conn = getConnection();
-            include_once("../../../server/controllers/getTimeGap.php");
-            $sql = "SELECT * FROM announcement ORDER BY timeCreated DESC";
-            // $sql = "SELECT * FROM announcement INNER JOIN user ON user.userID = announcement.adminID ORDER BY timeCreated DESC";
-            $result = mysqli_query($conn, $sql);
-
-            if (mysqli_num_rows($result) > 0) :
-            while ($row = mysqli_fetch_assoc($result)) :
-
-            $storedDate = $row['timeCreated'];
-            $timeGap = getTimeGap($storedDate);
-            ?>
-            <div class="card anouncement-list-item">
-                <div class="card-body">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><?= $row['subject'] ?></h5>
-                        <small class="text-muted"><?= $timeGap ?></small>
+            @{
+                foreach (var an in sortedAnnounceList)
+                {
+                    <div class="card anouncement-list-item">
+                        <div class="card-body">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@an.Title</h5>
+                                <small class="text-muted">@an.AnnounceAt</small>
+                            </div>
+                            @an.Message
+                        </div>
                     </div>
-                    <?= $row["content"] ?>
-                    <!-- <small class="text-muted"><?= $row['Fullname'] ?></small> -->
-                </div>
-            </div>
 
-            <?php
-            endwhile;
-            else :
-            echo "0 results";
-            endif;
-            ?>
-            <!-- </div>
+                }
+            }
 
-                </div>
-            </div> -->
+
         </div>
 
         <div class="col-lg-4 right">

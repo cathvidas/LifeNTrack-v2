@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LifeNTrack.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,8 +7,11 @@ using System.Web.Mvc;
 
 namespace LifeNTrack.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
+        User user = new User();
+
+        private activityDBEntities fe = new activityDBEntities();
         // GET: User
         public ActionResult Index()
         {
@@ -23,6 +27,10 @@ namespace LifeNTrack.Controllers
         }
         public ActionResult Announcements()
         {
+            var announcementList = (from a in fe.Announcements
+                                    select a).ToList();
+
+            ViewData["AnnouncementList"] = announcementList;
             return View();
         }
         public ActionResult Events()
@@ -33,7 +41,6 @@ namespace LifeNTrack.Controllers
         {
             return View();
         }
-
-     
+        
     }
 }

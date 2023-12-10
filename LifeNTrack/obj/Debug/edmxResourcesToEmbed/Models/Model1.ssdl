@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="activityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Announcement">
+    <Key>
+      <PropertyRef Name="AnnouncementID" />
+    </Key>
+    <Property Name="AnnouncementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Message" Type="varchar" MaxLength="50" />
+    <Property Name="AnnounceAt" Type="datetime" />
+    <Property Name="AdminID" Type="int" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="RoleID" />
@@ -20,6 +30,18 @@
     <Property Name="RoleID" Type="int" />
     <Property Name="Status" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_Announcement_Announcement">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Announcement">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_UserRole">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -33,8 +55,13 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="activityDBModelStoreContainer">
+    <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Announcement_Announcement" Association="Self.FK_Announcement_Announcement">
+      <End Role="User" EntitySet="User" />
+      <End Role="Announcement" EntitySet="Announcement" />
+    </AssociationSet>
     <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
       <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />

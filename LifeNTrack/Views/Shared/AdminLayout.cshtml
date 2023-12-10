@@ -1,13 +1,13 @@
-﻿@{
+﻿@using LifeNTrack.Models
+@{
     var userRole = Session["UserRole"];
 
-    if (userRole == null || (int)userRole != 1)
-    {
-        Response.Redirect("~/Home/Index");
-    }
+      if (userRole == null || (int)userRole != 1)
+       {
+         Response.Redirect("~/Home/Index");
+       }
 }<!DOCTYPE html>
 
-<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -96,7 +96,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="../../../server/controllers/signout.php">
+                            <a class="dropdown-item d-flex align-items-center" href="/Home/Signout">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
@@ -138,33 +138,14 @@
                     <span>Announcements</span>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link " href="index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="usersList.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Users List</span>
-                </a>
-            </li> -->
-            <!-- <li class="nav-heading">Pages</li> -->
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="announcements.php">
-                    <i class="bi bi-person"></i>
-                    <span>Announcement</span>
-                </a>
-            </li> -->
 
-            <hr>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#announcementForm">Add Announcement</button>
 
 
 
 
         </ul>
+        <hr>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#announcementForm">Add Announcement</button>
 
     </aside><!-- End Sidebar-->
 
@@ -181,29 +162,27 @@
                         <h5 class="modal-title">Add Announcement</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <!-- <div class="card-body"> -->
-                        <!-- Floating Labels Form -->
-                        <form class="row g-3" method="POST" action="../../../server/controllers/addAnnouncement.php?admin=<?= $userData['userID'] ?>">
+                    <form class="row g-3" method="POST" action="/Admin/AddAnnouncement">
+                        <div class="modal-body">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingName" placeholder="Your Name" name="subject">
+                                    <input type="text" class="form-control" id="floatingName" placeholder="Title" name="Title">
                                     <label for="floatingName">Subject</label>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;" name="content"></textarea>
+                                    <textarea class="form-control" id="floatingTextarea" placeholder="Message" name="Message" style="height: 100px;"></textarea>
                                     <label for="floatingTextarea">Content</label>
                                 </div>
                             </div>
 
                             <!-- </div> -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
 
                     </form><!-- End floating Labels Form -->
                 </div>

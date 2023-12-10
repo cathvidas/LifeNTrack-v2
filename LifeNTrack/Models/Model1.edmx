@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="activityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="activityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="AnnouncementID" />
+          </Key>
+          <Property Name="AnnouncementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Message" Type="varchar" MaxLength="50" />
+          <Property Name="AnnounceAt" Type="datetime" />
+          <Property Name="AdminID" Type="int" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="RoleID" />
@@ -25,6 +35,18 @@
           <Property Name="RoleID" Type="int" />
           <Property Name="Status" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Announcement_Announcement">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_UserRole">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -38,15 +60,19 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="activityDBModelStoreContainer">
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Announcement_Announcement" Association="Self.FK_Announcement_Announcement">
+            <End Role="User" EntitySet="User" />
+            <End Role="Announcement" EntitySet="Announcement" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="activityDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -71,6 +97,7 @@
           <Property Name="RoleID" Type="Int32" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Announcements" Relationship="activityDBModel.FK_Announcement_Announcement" FromRole="User" ToRole="Announcement" />
         </EntityType>
         <Association Name="FK_User_UserRole">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
@@ -91,7 +118,35 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Announcements" EntityType="activityDBModel.Announcement" />
+          <AssociationSet Name="FK_Announcement_Announcement" Association="activityDBModel.FK_Announcement_Announcement">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Announcement" EntitySet="Announcements" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="AnnouncementID" />
+          </Key>
+          <Property Name="AnnouncementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AnnounceAt" Type="DateTime" Precision="3" />
+          <Property Name="AdminID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="activityDBModel.FK_Announcement_Announcement" FromRole="Announcement" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Announcement_Announcement">
+          <End Type="activityDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="activityDBModel.Announcement" Role="Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -117,6 +172,17 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Announcements">
+            <EntityTypeMapping TypeName="activityDBModel.Announcement">
+              <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AnnounceAt" ColumnName="AnnounceAt" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AnnouncementID" ColumnName="AnnouncementID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

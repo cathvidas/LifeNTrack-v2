@@ -1,7 +1,9 @@
-﻿
+﻿@using LifeNTrack.Models
 @{
     ViewBag.Title = "UsersList";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var userList = ViewData["UserList"] as IEnumerable<User>;
+    var sortedUserList = userList.OrderBy(u => u.LastName);
 }
 <div class="pagetitle">
     <h1>Users List</h1>
@@ -45,37 +47,31 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Role</th>
+                                        <th scope="col">Gender</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    $sql = "SELECT * FROM user WHERE Role = 'User'";
-                                    $result = mysqli_query($conn, $sql);
-                                    $count = 1;
-                                    if (mysqli_num_rows($result) > 0) :
-                                    while ($row = mysqli_fetch_assoc($result)) :
-                                    ?>
-                                    <tr>
-                                        <th scope="row"><a href="#"><?= $count ?></a></th>
-                                        <td><?= $row['Fullname'] ?></td>
-                                        <td><a href="#" class="text-primary"><?= $row['Email'] ?></a></td>
-                                        <td><?= $row['Role'] ?></td>
-                                        <td><span class="badge bg-success status-field"><?= $row['Status'] ?></span></td>
-                                        <td>
-                                            <button onclick="editUserStatus(<?= $row['userID'] ?>, '<?= $row['Fullname'] ?>')" type="button" class="btn btn-outline-primary user-list-btn" data-bs-toggle="modal" data-bs-target="#userModal">
-                                                Edit
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    $count++;
-                                    endwhile;
-                                    else :
-                                    echo "0 results";
-                                    endif;
-                                    ?>
+                                    @{
+                                        var count = 0;
+                                        foreach (var user in sortedUserList)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row"><a href="#">@count</a></th>
+                                                <td>@user.LastName, @user.FirstName</td>
+                                                <td><a href="#" class="text-primary">@user.Email</a></td>
+                                                <td>@user.Gender</td>
+                                                <td><span class="badge bg-success status-field">@user.Status</span></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-outline-primary user-list-btn" data-toggle="modal" data-target="#userModal" onclick="editUserStatus(@user.UserID, '@user.FirstName @user.LastName')">
+                                                        Edit
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -85,17 +81,18 @@
                             <div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        <form action="" method="POST" id="editUserStatusForm">
+                                        <form action="/Admin/SetUserStatus" method="POST" id="editUserStatusForm">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">
                                                     Set status for <span id="userName"></span>
                                                 </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <fieldset class="row mb-3">
                                                     <legend class="col-form-label col-sm-2 pt-0">Status</legend>
                                                     <div class="col-sm-10">
+                                                        <input type="hidden" name="userID" id="userIdField" value="">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="radio" name="status" id="gridRadios1" value="Active" checked="" disabled>
                                                             <label class="form-check-label" for="gridRadios1">
@@ -118,7 +115,7 @@
                                                 </fieldset>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </form>
@@ -126,6 +123,15 @@
                                 </div>
                             </div><!-- End Vertically centered Modal-->
                         </div>
+                        <script>
+                            function editUserStatus(userID, fullname) {
+                                const idField = document.getElementById('userIdField');
+                                idField.value = userID;
+
+                                const span = document.querySelector('#userName');
+                                span.textContent = fullname;
+                            }
+                        </script>
 
 
 

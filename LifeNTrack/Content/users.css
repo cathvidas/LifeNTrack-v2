@@ -149,7 +149,7 @@ aside.user-nav .logout i {
 .welcome-message {
   position: relative;
   /* height: 200px; */
-  background: url('../../public/assets/images/client-bg.png');
+  background: url('/Images/client-bg.png');
   background-repeat: no-repeat;
   background-position: 100%;
   background-size: cover;

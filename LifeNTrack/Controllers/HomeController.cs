@@ -26,7 +26,7 @@ namespace LifeNTrack.Controllers
             use.LastName = lastName;
             use.Email = email;
             use.Password = password;
-            use.RoleID = 1;
+            use.RoleID = 2;
 
             activityDBEntities fe = new activityDBEntities();
             fe.Users.Add(use);
@@ -34,7 +34,7 @@ namespace LifeNTrack.Controllers
 
             int newUserID = use.UserID;
             Session["UserID"] = newUserID;
-            Session["UserRole"] = 1;
+            Session["UserRole"] = 2;
 
             return RedirectToAction("Index", "User");
         }
@@ -72,7 +72,11 @@ namespace LifeNTrack.Controllers
         }
         
 
-       
+       public ActionResult Signout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index");
+        }
 
     }
 }

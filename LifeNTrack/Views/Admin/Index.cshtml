@@ -1,7 +1,9 @@
-﻿
+﻿@using LifeNTrack.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var userList = ViewData["UserList"] as IEnumerable<User>;
+    var sortedUserList = userList.OrderBy(u => u.LastName);
 }
 
 
@@ -18,6 +20,7 @@
 <section class="section dashboard">
     <div class="row">
 
+
         <!-- Left side columns -->
         <div class="col-lg-8">
             <div class="row">
@@ -33,13 +36,7 @@
                                 </div>
                                 <div class="ps-3">
                                     <h6>Users</h6>
-                                    <?php
-                                    $conn = getConnection();
-                                    $countSql = "SELECT * FROM user WHERE Role = 'User'";
-                                    $countUserResult = mysqli_query($conn, $countSql);
-                                    $userCount = mysqli_num_rows($countUserResult);
-                                    ?>
-                                    <span class="text-primary small pt-1 fw-bold"><?= $userCount ?></span> <span class="text-muted small pt-2 ps-1">total</span>
+                                    <span class="text-primary small pt-1 fw-bold">@userList.Count()</span> <span class="text-muted small pt-2 ps-1">total</span>
 
                                 </div>
                             </div>
@@ -59,13 +56,7 @@
                                 </div>
                                 <div class="ps-3">
                                     <h6>Activities</h6>
-                                    <?php
-                                    $conn = getConnection();
-                                    $countSql = "SELECT * FROM activity";
-                                    $countActResult = mysqli_query($conn, $countSql);
-                                    $actCount = mysqli_num_rows($countActResult);
-                                    ?>
-                                    <span class="text-success small pt-1 fw-bold"><?= $actCount ?></span> <span class="text-muted small pt-2 ps-1">total</span>
+                                    <span class="text-success small pt-1 fw-bold">23</span> <span class="text-muted small pt-2 ps-1">total</span>
 
                                 </div>
                             </div>
@@ -97,44 +88,44 @@
                             ?>
                             <canvas id="barChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 221px; width: 442px;" width="442" height="221"></canvas>
                             <script>
-                                        document.addEventListener("DOMContentLoaded", () => {
-                                            new Chart(document.querySelector('#barChart'), {
-                                                type: 'bar',
-                                                data: {
-                                                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                                                    datasets: [{
-                                                        label: 'All Activities',
-                                                        data: [<?= countActivityPerMonth(1) ?>, <?= countActivityPerMonth(2) ?>, <?= countActivityPerMonth(3) ?>, <?= countActivityPerMonth(4) ?>, <?= countActivityPerMonth(5) ?>, <?= countActivityPerMonth(6) ?>, <?= countActivityPerMonth(7) ?>, <?= countActivityPerMonth(8) ?>, <?= countActivityPerMonth(9) ?>, <?= countActivityPerMonth(10) ?>, <?= countActivityPerMonth(11) ?>, <?= countActivityPerMonth(12) ?>],
-                                                        backgroundColor: [
-                                                            'rgba(255, 99, 132, 0.2)',
-                                                            'rgba(255, 159, 64, 0.2)',
-                                                            'rgba(255, 205, 86, 0.2)',
-                                                            'rgba(75, 192, 192, 0.2)',
-                                                            'rgba(54, 162, 235, 0.2)',
-                                                            'rgba(153, 102, 255, 0.2)',
-                                                            'rgba(201, 203, 207, 0.2)'
-                                                        ],
-                                                        borderColor: [
-                                                            'rgb(255, 99, 132)',
-                                                            'rgb(255, 159, 64)',
-                                                            'rgb(255, 205, 86)',
-                                                            'rgb(75, 192, 192)',
-                                                            'rgb(54, 162, 235)',
-                                                            'rgb(153, 102, 255)',
-                                                            'rgb(201, 203, 207)'
-                                                        ],
-                                                        borderWidth: 1
-                                                    }]
-                                                },
-                                                options: {
-                                                    scales: {
-                                                        y: {
-                                                            beginAtZero: true
-                                                        }
-                                                    }
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    new Chart(document.querySelector('#barChart'), {
+                                        type: 'bar',
+                                        data: {
+                                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                                            datasets: [{
+                                                label: 'All Activities',
+                                                data: [<?= countActivityPerMonth(1) ?>, <?= countActivityPerMonth(2) ?>, <?= countActivityPerMonth(3) ?>, <?= countActivityPerMonth(4) ?>, <?= countActivityPerMonth(5) ?>, <?= countActivityPerMonth(6) ?>, <?= countActivityPerMonth(7) ?>, <?= countActivityPerMonth(8) ?>, <?= countActivityPerMonth(9) ?>, <?= countActivityPerMonth(10) ?>, <?= countActivityPerMonth(11) ?>, <?= countActivityPerMonth(12) ?>],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)',
+                                                    'rgba(255, 205, 86, 0.2)',
+                                                    'rgba(75, 192, 192, 0.2)',
+                                                    'rgba(54, 162, 235, 0.2)',
+                                                    'rgba(153, 102, 255, 0.2)',
+                                                    'rgba(201, 203, 207, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgb(255, 99, 132)',
+                                                    'rgb(255, 159, 64)',
+                                                    'rgb(255, 205, 86)',
+                                                    'rgb(75, 192, 192)',
+                                                    'rgb(54, 162, 235)',
+                                                    'rgb(153, 102, 255)',
+                                                    'rgb(201, 203, 207)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
                                                 }
-                                            });
-                                        });
+                                            }
+                                        }
+                                    });
+                                });
                             </script>
                             <!-- End Bar CHart -->
 
@@ -168,34 +159,27 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Role</th>
+                                        <th scope="col">Gender</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    $sql = "SELECT * FROM user WHERE Role = 'User'";
-                                    $result = mysqli_query($conn, $sql);
-                                    $count = 1;
+                                    @{
+                                        var count = 0;
+                                        foreach (var user in sortedUserList)
+                                        {
+                                            count++;
 
-                                    if (mysqli_num_rows($result) > 0) :
-                                    while ($row = mysqli_fetch_assoc($result)) :
-                                    ?>
-                                    <tr>
-                                        <th scope="row"><a href="#"><?= $count ?></a></th>
-                                        <td><?= $row['Fullname'] ?></td>
-                                        <td><a href="#" class="text-primary"><?= $row['Email'] ?></a></td>
-                                        <td><?= $row['Role'] ?></td>
-                                        <td><span class="badge bg-success status-field"><?= $row['Status'] ?></span></td>
-                                    </tr>
+                                            <tr>
+                                                <th scope="row"><a href="#">@count</a></th>
+                                                <td>@user.LastName, @user.FirstName</td>
+                                                <td><a href="#" class="text-primary">@user.Email</a></td>
+                                                <td>@user.Gender</td>
+                                                <td><span class="badge bg-success status-field">@user.Status</span></td>
+                                            </tr>
+                                        }
+                                    }
 
-                                    <?php
-                                    $count++;
-                                    endwhile;
-                                    else :
-                                    echo "0 results";
-                                    endif;
-                                    ?>
                                 </tbody>
                             </table>
 
@@ -220,50 +204,50 @@
                     include_once("../../../server/controllers/genderStatistics.php")
                     ?>
                     <script>
-                                document.addEventListener("DOMContentLoaded", () => {
-                                    echarts.init(document.querySelector("#trafficChart")).setOption({
-                                        tooltip: {
-                                            trigger: 'item'
-                                        },
-                                        legend: {
-                                            top: '5%',
-                                            left: 'center'
-                                        },
-                                        series: [{
-                                            name: 'User Gender Ratio',
-                                            type: 'pie',
-                                            radius: ['40%', '70%'],
-                                            avoidLabelOverlap: false,
-                                            label: {
-                                                show: false,
-                                                position: 'center'
-                                            },
-                                            emphasis: {
-                                                label: {
-                                                    show: true,
-                                                    fontSize: '18',
-                                                    fontWeight: 'bold'
-                                                }
-                                            },
-                                            labelLine: {
-                                                show: false
-                                            },
-                                            data: [{
-                                                    value: <?= $female ?>,
-                                                    name: 'Female'
-                                                },
-                                                {
-                                                    value: <?= $male ?>,
-                                                    name: 'Male'
-                                                },
-                                                {
-                                                    value: <?= $others ?>,
-                                                    name: 'Others'
-                                                }
-                                            ]
-                                        }]
-                                    });
-                                });
+                        document.addEventListener("DOMContentLoaded", () => {
+                            echarts.init(document.querySelector("#trafficChart")).setOption({
+                                tooltip: {
+                                    trigger: 'item'
+                                },
+                                legend: {
+                                    top: '5%',
+                                    left: 'center'
+                                },
+                                series: [{
+                                    name: 'User Gender Ratio',
+                                    type: 'pie',
+                                    radius: ['40%', '70%'],
+                                    avoidLabelOverlap: false,
+                                    label: {
+                                        show: false,
+                                        position: 'center'
+                                    },
+                                    emphasis: {
+                                        label: {
+                                            show: true,
+                                            fontSize: '18',
+                                            fontWeight: 'bold'
+                                        }
+                                    },
+                                    labelLine: {
+                                        show: false
+                                    },
+                                    data: [{
+                                        value: <?= $female ?>,
+                                        name: 'Female'
+                                    },
+                                    {
+                                        value: <?= $male ?>,
+                                        name: 'Male'
+                                    },
+                                    {
+                                        value: <?= $others ?>,
+                                        name: 'Others'
+                                    }
+                                    ]
+                                }]
+                            });
+                        });
                     </script>
 
                 </div>

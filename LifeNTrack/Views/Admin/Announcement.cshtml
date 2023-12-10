@@ -1,7 +1,9 @@
-﻿
+﻿@using LifeNTrack.Models
 @{
     ViewBag.Title = "Announcement";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var announceList = ViewData["AnnouncementList"] as IEnumerable<Announcement>;
+    var sortedAnnounceList = announceList.OrderBy(u => u.AnnounceAt);
 }
 
 <div class="pagetitle">
@@ -41,49 +43,19 @@
                             <!-- <h5 class="card-title">Announcements <span>| Recent</span></h5> -->
                             <div class="list-group">
 
-                                <?php
-                                include_once("../../../server/controllers/getTimeGap.php");
-                                $sql = "SELECT * FROM announcement ORDER BY timeCreated DESC";
-                                $result = mysqli_query($conn, $sql);
-                                $count = 1;
-                                if (mysqli_num_rows($result) > 0) :
-                                while ($row = mysqli_fetch_assoc($result)) :
+                                @{
+                                    foreach (var a in sortedAnnounceList)
+                                    {
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1">@a.Title</h5>
+                                                <small>@a.AnnounceAt</small>
+                                            </div>
+                                            <p class="mb-1">@a.Message</p>
+                                        </a>
+                                    }
+                                }
 
-                                $storedDate = $row['timeCreated'];
-                                $timeGap = getTimeGap($storedDate);
-                                ?>
-
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1"><?= $row["subject"] ?></h5>
-                                        <small><?= $timeGap ?></small>
-                                    </div>
-                                    <p class="mb-1"><?= $row["content"] ?></p>
-                                </a>
-
-                                <?php
-                                $count++;
-                                endwhile;
-                                else :
-                                echo "0 results";
-                                endif;
-                                ?>
-                                <!-- <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
-                                    </div>
-                                    <p class="mb-1">Some placeholder content in a paragraph.</p>
-                                    <small class="text-muted">And some muted small print.</small>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">List group item heading</h5>
-                                        <small class="text-muted">3 days ago</small>
-                                    </div>
-                                    <p class="mb-1">Some placeholder content in a paragraph.</p>
-                                    <small class="text-muted">And some muted small print.</small>
-                                </a> -->
                             </div>
                         </div>
 
