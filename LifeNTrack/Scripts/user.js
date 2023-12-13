@@ -101,3 +101,27 @@ checkbox.addEventListener("change", function () {
 
 // // Attach the function to the form's submit event
 // document.getElementById('changePassForm').addEventListener('submit', verifyLogin);
+
+
+// Assume this script is within a <script> tag or in a separate .js file
+
+$(document).on('click', '.event-button', function (e) {
+    e.preventDefault();
+
+    var activityId = $(this).data('activity-id'); // Retrieve the activity ID
+    // Make an AJAX request to your controller action
+    $.ajax({
+        url: '/User/ActivityUpdate',
+        type: 'GET',
+        data: { id: activityId }, // Pass the activity ID to the controller
+        success: function (result) {
+            // Update the specific part of your view with the result returned from the server
+            $('#yourTargetElement').html(result);
+            // Show the modal after updating content
+            $('#edit-activity-modal').modal('show');
+        },
+        error: function (xhr, status, error) {
+            // Handle errors if any
+        }
+    });
+});

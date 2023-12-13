@@ -11,12 +11,14 @@ namespace LifeNTrack.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Globalization;
+
+
     public partial class Activity
     {
         public int ActivityID { get; set; }
         public string ActTitle { get; set; }
-        public Nullable<System.DateTime> ActDate { get; set; }
+        public DateTime ActDate { get; set; }
         public Nullable<System.TimeSpan> ActTime { get; set; }
         public string ActLocation { get; set; }
         public string ActDescription { get; set; }

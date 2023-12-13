@@ -171,13 +171,24 @@
                                         {
                                             count++;
 
-                                            <tr>
-                                                <th scope="row"><a href="#">@count</a></th>
-                                                <td>@user.LastName, @user.FirstName</td>
-                                                <td><a href="#" class="text-primary">@user.Email</a></td>
-                                                <td>@user.Gender</td>
-                                                <td><span class="badge bg-success status-field">@user.Status</span></td>
-                                            </tr>
+                                    <tr>
+                                        <th scope="row"><a href="#">@count</a></th>
+                                        <td>@user.LastName, @user.FirstName</td>
+                                        <td><a href="#" class="text-primary">@user.Email</a></td>
+                                        <td>@user.Gender</td>
+                                        @if (user.Status == "Active")
+                                        {
+                                            <td><span class="badge bg-success status-field">@user.Status</span></td>
+                                        }
+                                        @if (user.Status == "Inactive")
+                                        {
+                                            <td><span class="badge bg-primary status-field">@user.Status</span></td>
+                                        }
+                                        @if (user.Status == "Deactivated")
+                                        {
+                                            <td><span class="badge bg-danger status-field">@user.Status</span></td>
+                                        }
+                                    </tr>
                                         }
                                     }
 

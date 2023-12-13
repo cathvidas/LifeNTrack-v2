@@ -116,5 +116,13 @@ namespace LifeNTrack.Controllers
             return RedirectToAction("Events");
         }
 
+        public ActionResult ActivityUpdate(int? id)
+        {
+            Activity ac = (from b in fe.Activities where b.ActivityID == id select b).FirstOrDefault();
+            ViewData["current"] = ac;
+
+            return View("Events");
+        }
+
     }
 }

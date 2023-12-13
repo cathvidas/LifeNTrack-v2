@@ -36,6 +36,7 @@ namespace LifeNTrack.Controllers
             int newUserID = use.UserID;
             Session["UserID"] = newUserID;
             Session["UserRole"] = 2;
+            Session["UserStatus"] = use.Status;
 
             ViewData["welcome"] = "Welcome";
 
@@ -55,8 +56,13 @@ namespace LifeNTrack.Controllers
 
             if (u != null)
             {
+                u.Status = "Active";
+                rdbe.SaveChanges();
+
                 Session["UserID"] = u.UserID; 
                 Session["UserRole"] = u.RoleID;
+                Session["UserStatus"] = u.Status;
+
                 if (u.RoleID == 2)
                 {
                     ViewData["welcome"] = "Welcome back";
@@ -78,6 +84,13 @@ namespace LifeNTrack.Controllers
 
        public ActionResult Signout()
         {
+            int userId = (int)Session["UserID"];
+            activityDBEntities rdbe = new activityDBEntities();
+            User u = (from a in rdbe.Users
+                      where a.UserID == userId
+                      select a).FirstOrDefault();
+            u.Status = "Inactive";
+            rdbe.SaveChanges();
             Session.Abandon();
             return RedirectToAction("Index");
         }

@@ -1,10 +1,11 @@
 ﻿@using LifeNTrack.Models
 @{
     var userRole = Session["UserRole"];
+    String userStatus = (string)Session["UserStatus"];
 
-    if (userRole == null || (int)userRole != 2)
+    if (userRole == null || (int)userRole != 2 || userStatus != "Active")
     {
-          Response.Redirect("~/Home/Index");
+        Response.Redirect("~/Home/Index");
     }
 
 
