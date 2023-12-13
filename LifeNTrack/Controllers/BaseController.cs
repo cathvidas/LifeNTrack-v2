@@ -25,8 +25,13 @@ namespace LifeNTrack.Controllers
                     if (user != null)
                     {
                         ViewData["UserName"] = user.FirstName;
+                        var ac = (from a in dbContext.Activities where a.UserID == userId select a).ToList();
+                        ViewData["ActivityList"] = ac;
                     }
+
                 }
+
+
             }
         }
     }

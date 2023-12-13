@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="activityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="ActivityID" />
+    </Key>
+    <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActTitle" Type="varchar" MaxLength="50" />
+    <Property Name="ActDate" Type="date" />
+    <Property Name="ActTime" Type="time" Precision="7" />
+    <Property Name="ActLocation" Type="varchar" MaxLength="50" />
+    <Property Name="ActDescription" Type="varchar(max)" />
+    <Property Name="ActOOTD" Type="varchar" MaxLength="50" />
+    <Property Name="ActCreated" Type="datetime2" Precision="7" />
+    <Property Name="ActRemark" Type="varchar" MaxLength="50" />
+    <Property Name="UserID" Type="int" />
+  </EntityType>
   <EntityType Name="Announcement">
     <Key>
       <PropertyRef Name="AnnouncementID" />
@@ -30,6 +45,18 @@
     <Property Name="RoleID" Type="int" />
     <Property Name="Status" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_Activity_UserActivity">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Announcement_Announcement">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
@@ -55,9 +82,14 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="activityDBModelStoreContainer">
+    <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Activity_UserActivity" Association="Self.FK_Activity_UserActivity">
+      <End Role="User" EntitySet="User" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
     <AssociationSet Name="FK_Announcement_Announcement" Association="Self.FK_Announcement_Announcement">
       <End Role="User" EntitySet="User" />
       <End Role="Announcement" EntitySet="Announcement" />

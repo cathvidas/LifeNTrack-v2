@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace LifeNTrack.Controllers
 {
-    public class AdminController : BaseController
+    public class AdminController : Controller
     {
         User user = new User();
 
@@ -21,7 +21,11 @@ namespace LifeNTrack.Controllers
                             select a).ToList();
 
             ViewData["UserList"] = userList;
-          
+
+            var activityList = (from a in fe.Activities
+                            select a).ToList();
+
+            ViewData["ActivityList"] = activityList;
 
             return View();
         }

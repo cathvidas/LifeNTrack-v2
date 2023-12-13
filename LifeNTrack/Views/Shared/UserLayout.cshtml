@@ -1,10 +1,13 @@
-﻿@{
+﻿@using LifeNTrack.Models
+@{
     var userRole = Session["UserRole"];
 
     if (userRole == null || (int)userRole != 2)
     {
-        Response.Redirect("~/Home/Index");
+          Response.Redirect("~/Home/Index");
     }
+
+
 
 }
 
@@ -21,6 +24,7 @@
 
 @Styles.Render("~/Content/style")
 <link href="~/Content/users.css" rel="stylesheet" />
+<link href="~/Content/templatemo-chain-app-dev.css"  rel="stylesheet"/>
 @Scripts.Render("~/bundles/modernizr")
 
 
@@ -142,7 +146,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="../../../server/controllers/signout.php">
+                            <a class="dropdown-item d-flex align-items-center" href="/Home/Signout">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
@@ -220,8 +224,7 @@
                             </div>
 
                             <!-- Floating Labels Form -->
-                            <form class="row g-3" action="../../../server/controllers/addActivity.php?id=<?= $userID ?>"
-                                  method="POST">
+                            <form class="row g-3" action="/User/AddActivity" method="POST">
                                 <div class="col-md-12">
                                     <div class="form-floating">
                                         <input type="text" name="title" class="form-control"

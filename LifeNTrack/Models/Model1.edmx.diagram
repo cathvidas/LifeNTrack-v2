@@ -10,6 +10,8 @@
         <AssociationConnector Association="activityDBModel.FK_User_UserRole" ManuallyRouted="false" />
         <EntityTypeShape EntityType="activityDBModel.Announcement" Width="1.5" PointX="5.625" PointY="1.5" />
         <AssociationConnector Association="activityDBModel.FK_Announcement_Announcement" />
+        <EntityTypeShape EntityType="activityDBModel.Activity" Width="1.5" PointX="5.25" PointY="5" />
+        <AssociationConnector Association="activityDBModel.FK_Activity_UserActivity" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

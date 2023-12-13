@@ -34,5 +34,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Activities">
+      <EntityTypeMapping TypeName="activityDBModel.Activity">
+        <MappingFragment StoreEntitySet="Activity">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ActRemark" ColumnName="ActRemark" />
+          <ScalarProperty Name="ActCreated" ColumnName="ActCreated" />
+          <ScalarProperty Name="ActOOTD" ColumnName="ActOOTD" />
+          <ScalarProperty Name="ActDescription" ColumnName="ActDescription" />
+          <ScalarProperty Name="ActLocation" ColumnName="ActLocation" />
+          <ScalarProperty Name="ActTime" ColumnName="ActTime" />
+          <ScalarProperty Name="ActDate" ColumnName="ActDate" />
+          <ScalarProperty Name="ActTitle" ColumnName="ActTitle" />
+          <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

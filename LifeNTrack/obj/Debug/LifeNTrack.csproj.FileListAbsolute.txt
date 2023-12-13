@@ -69,7 +69,6 @@ c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\bin\System.Web.WebPa
 c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\bin\Newtonsoft.Json.xml
 c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\bin\Antlr3.Runtime.pdb
 c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\obj\Debug\LifeNTrack.csprojAssemblyReference.cache
 c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\obj\Debug\LifeNTrack.csproj.CoreCompileInputs.cache
 c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\obj\Debug\LifeNTrack.csproj.CopyComplete
 c:\users\manuelito vidas\source\repos\LifeNTrack\LifeNTrack\obj\Debug\LifeNTrack.dll
@@ -78,3 +77,4 @@ C:\Users\Manuelito Vidas\source\repos\LifeNTrack\LifeNTrack\bin\EntityFramework.
 C:\Users\Manuelito Vidas\source\repos\LifeNTrack\LifeNTrack\bin\EntityFramework.SqlServer.dll
 C:\Users\Manuelito Vidas\source\repos\LifeNTrack\LifeNTrack\bin\EntityFramework.xml
 C:\Users\Manuelito Vidas\source\repos\LifeNTrack\LifeNTrack\bin\EntityFramework.SqlServer.xml
+C:\Users\Manuelito Vidas\source\repos\LifeNTrack\LifeNTrack\obj\Debug\LifeNTrack.csprojAssemblyReference.cache

@@ -27,6 +27,7 @@ namespace LifeNTrack.Controllers
             use.Email = email;
             use.Password = password;
             use.RoleID = 2;
+            use.Status = "Active";
 
             activityDBEntities fe = new activityDBEntities();
             fe.Users.Add(use);
@@ -35,6 +36,8 @@ namespace LifeNTrack.Controllers
             int newUserID = use.UserID;
             Session["UserID"] = newUserID;
             Session["UserRole"] = 2;
+
+            ViewData["welcome"] = "Welcome";
 
             return RedirectToAction("Index", "User");
         }
@@ -56,6 +59,7 @@ namespace LifeNTrack.Controllers
                 Session["UserRole"] = u.RoleID;
                 if (u.RoleID == 2)
                 {
+                    ViewData["welcome"] = "Welcome back";
                     return RedirectToAction("Index", "User");
                 }
                 else if (u.RoleID == 1)

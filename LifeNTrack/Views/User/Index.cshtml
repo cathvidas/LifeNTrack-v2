@@ -1,7 +1,9 @@
-﻿
+﻿@using LifeNTrack.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Message = "Welcome";
     Layout = "~/Views/Shared/UserLayout.cshtml";
+    var activityList = ViewData["ActivityList"] as IEnumerable<Activity>;
+   // ViewData["welcome"] = "Welcome";
 }
 
 
@@ -20,7 +22,7 @@
         <div class="col-lg-8">
             <div class="welcome-message card col-lg-12">
                 <div class="message">
-                    <h3>Welcome, <b>@ViewData["UserName"]!</b> </h3>
+                    <h3>@ViewBag.Message, <b>@ViewData["UserName"]!</b> </h3>
                     <p>We're delighted to have you here. Let's get started on your journey to productivity and success."</p>
                     <button type="button" class="btn btn-primary rounded-pill activity-btn" data-toggle="modal" data-target="#add-activity-modal">Add Activity</button>
                 </div>
@@ -46,7 +48,17 @@
                                     <i class="bi bi-calendar2-week"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>9</h6>
+                                    @{
+                                        int ucount = 0;
+                                        foreach (var a in activityList)
+                                        {
+                                            if (a.ActRemark == "upcoming")
+                                            {
+                                                ucount++;
+                                            }
+                                        }
+                                        <h6>@ucount</h6>
+                                    }
                                     <!-- <span class="text-success small pt-1 fw-bold">12%</span>  -->
                                     <span class="text-muted small pt-2 ps-1">Upcoming</span>
 
@@ -67,7 +79,17 @@
                                     <i class="bi bi-calendar2-check"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>7</h6>
+                                    @{
+                                        int dcount = 0;
+                                        foreach (var a in activityList)
+                                        {
+                                            if (a.ActRemark == "done")
+                                            {
+                                                dcount++;
+                                            }
+                                        }
+                                        <h6>@dcount</h6>
+                                    }
                                     <span class="text-muted small pt-2 ps-1">Completed</span>
 
                                 </div>
@@ -86,7 +108,17 @@
                                     <i class="bi bi-calendar2-x"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>0</h6>
+                                    @{
+                                        int ccount = 0;
+                                        foreach (var a in activityList)
+                                        {
+                                            if (a.ActRemark == "cancelled")
+                                            {
+                                                ccount++;
+                                            }
+                                        }
+                                        <h6>@ccount</h6>
+                                    }
                                     <!-- <span class="text-danger small pt-1 fw-bold">12%</span> -->
                                     <!-- <span class="text-danger small pt-1 fw-bold">Cancelled</span> -->
                                     <span class="text-muted small pt-2 ps-1">Cancelled</span>
@@ -108,44 +140,44 @@
                     <!-- Bar Chart -->
                     <canvas id="barChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 242px; width: 485px;" width="485" height="242"></canvas>
                     <script>
-                                document.addEventListener("DOMContentLoaded", () => {
-                                    new Chart(document.querySelector('#barChart'), {
-                                        type: 'bar',
-                                        data: {
-                                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                                            datasets: [{
-                                                label: 'My Activities',
-                                                data: [1, 2, 3, 443 , 34, 23, 2, 2, 2, 8, 45,4],
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132, 0.2)',
-                                                    'rgba(255, 159, 64, 0.2)',
-                                                    'rgba(255, 205, 86, 0.2)',
-                                                    'rgba(75, 192, 192, 0.2)',
-                                                    'rgba(54, 162, 235, 0.2)',
-                                                    'rgba(153, 102, 255, 0.2)',
-                                                    'rgba(201, 203, 207, 0.2)'
-                                                ],
-                                                borderColor: [
-                                                    'rgb(255, 99, 132)',
-                                                    'rgb(255, 159, 64)',
-                                                    'rgb(255, 205, 86)',
-                                                    'rgb(75, 192, 192)',
-                                                    'rgb(54, 162, 235)',
-                                                    'rgb(153, 102, 255)',
-                                                    'rgb(201, 203, 207)'
-                                                ],
-                                                borderWidth: 1
-                                            }]
-                                        },
-                                        options: {
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: true
-                                                }
-                                            }
+                        document.addEventListener("DOMContentLoaded", () => {
+                            new Chart(document.querySelector('#barChart'), {
+                                type: 'bar',
+                                data: {
+                                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                                    datasets: [{
+                                        label: 'My Activities',
+                                        data: [1, 2, 3, 443, 34, 23, 2, 2, 2, 8, 45, 4],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)',
+                                            'rgba(255, 205, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(201, 203, 207, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgb(255, 99, 132)',
+                                            'rgb(255, 159, 64)',
+                                            'rgb(255, 205, 86)',
+                                            'rgb(75, 192, 192)',
+                                            'rgb(54, 162, 235)',
+                                            'rgb(153, 102, 255)',
+                                            'rgb(201, 203, 207)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
                                         }
-                                    });
-                                });
+                                    }
+                                }
+                            });
+                        });
                     </script>
                     <!-- End Bar CHart -->
 
@@ -165,23 +197,41 @@
                     </div>
 
                     <div class="activity" style="margin-top: 30px;">
+                        @{
+                            foreach (var a in activityList)
+                            {
 
                         <div class="activity-item d-flex">
                             <div class="activite-label">
-                                6 min
+                                6 min ago
                             </div>
-                            '<i class="bi bi-circle-fill activity-badge text-primary align-self-start"></i>
+                            @if (a.ActRemark == "done")
+                            {
+
+                                <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
+                            }
+                            @if (a.ActRemark == "upcoming")
+                            {
+
+                                <i class="bi bi-circle-fill activity-badge text-primary align-self-start"></i>
+                            }
+                            @if (a.ActRemark == "cancelled")
+                            {
+
+                                <i class="bi bi-circle-fill activity-badge text-danger align-self-start"></i>
+                            }
                             <!-- <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i> -->
                             <div class="activity-content">
-                                tikwejwh
+                                @a.ActTitle
                             </div>
                         </div>
+                            }
+                        }
 
                     </div>
 
                 </div>
 
-                <button type="button" class="btn btn-primary rounded-pill activity-btn" data-toggle="modal" data-target="#add-activity-modal">Add Activity</button>
             </div>
 
         </div>

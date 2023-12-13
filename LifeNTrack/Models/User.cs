@@ -18,6 +18,7 @@ namespace LifeNTrack.Models
         public User()
         {
             this.Announcements = new HashSet<Announcement>();
+            this.Activities = new HashSet<Activity>();
         }
     
         public int UserID { get; set; }
@@ -32,5 +33,7 @@ namespace LifeNTrack.Models
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Announcement> Announcements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activity> Activities { get; set; }
     }
 }

@@ -393,3 +393,14 @@ i.profile {
   color: #2e4572;
   font-size: 25px;
 }
+
+.service-item.upcm {
+    background-image: url(../images/service-bg.jpg);
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+    .service-item.upcm .event-desc {
+        color: #fff;
+    }

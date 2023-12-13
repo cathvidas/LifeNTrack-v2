@@ -71,7 +71,7 @@
                         </ul>
                         <div class="tab-content pt-2">
 
-                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <div class="tab-pane show active profile-overview" id="profile-overview">
                                 <h5 class="card-title">Bio</h5>
                                 <p class="small fst-italic"><?= $userData['Bio'] ?></p>
 
@@ -94,7 +94,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                            <div class="tab-pane profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
                                 <form method="POST" action="../../../server/controllers/updateUser.php">
@@ -120,7 +120,7 @@
                                     <div class="row mb-3">
                                         <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="Email" value="<?= $userData['Email'] ?>" required>
+                                            <input name="email" type="email" class="form-control" id="Email" value="" required>
                                         </div>
                                     </div>
 
@@ -190,7 +190,7 @@
 
                             </div> -->
 
-                            <div class="tab-pane fade pt-3" id="profile-change-password">
+                            <div class="tab-pane de pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
                                 <form method="POST" action="../../../server/controllers/updateUser.php" id=" changePassForm">
 
