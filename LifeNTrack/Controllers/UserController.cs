@@ -21,10 +21,7 @@ namespace LifeNTrack.Controllers
         {
             return View();
         }
-        public ActionResult Timeline()
-        {
-            return View();
-        }
+
         public ActionResult Announcements()
         {
             var announcementList = (from a in fe.Announcements
