@@ -1,0 +1,14 @@
+Functionalities:
+- user login and registration
+- crud functionality for activities
+- user session
+- announcement retrieveal
+- admin dashboard
+
+
+Lacking functionality if based on midterm:
+- follow user
+- notification
+- user data
+- bargraph and pie graph
+- UI
