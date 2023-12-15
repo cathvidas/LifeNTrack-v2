@@ -18,12 +18,14 @@ namespace LifeNTrack.Controllers
         {
             String firstName = fc["FirstName"];
             String lastName = fc["LastName"];
+            String Gender = fc["Gender"];
             String email = fc["Email"];
             String password = fc["Password"];
 
             User use = new User();
             use.FirstName = firstName;
             use.LastName = lastName;
+            use.Gender = Gender;
             use.Email = email;
             use.Password = password;
             use.RoleID = 2;
